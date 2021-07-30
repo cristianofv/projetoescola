@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Ensino.Web.Models.Aluno>
+
+@{
+    ViewBag.Title = "Alunos";
+}
+
+<h2>Lista de Alunos</h2>
+<p>
+    <button onclick="location.href='@Url.Action("Create", "Aluno")'" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo Aluno</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genero)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @(item.Genero == "M" ? "Masculino" : (item.Genero == "F" ? "Feminino" : "Não infomado"))
+            </td>
+            <td>
+                <button onclick="location.href='@Url.Action("Edit", "Aluno", new { id = item.ID } )'" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ediar </button>
+                <button onclick="location.href='@Url.Action("Details", "Aluno", new { id = item.ID })'" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Detalhes </button>
+                <button onclick="location.href='@Url.Action("Delete", "Aluno", new { id = item.ID })'" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Deletar </button>
+            </td>
+        </tr>
+    }
+
+</table>

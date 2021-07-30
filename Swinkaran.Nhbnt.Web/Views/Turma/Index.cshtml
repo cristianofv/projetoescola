@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Ensino.Web.Models.Turma>
+
+@{
+    ViewBag.Title = "Turma";
+}
+
+    <h2>Lista de Turmas</h2>
+
+<p>
+    <button onclick="location.href='@Url.Action("Create", "Turma")'" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo Turma</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Professor.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disciplina.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ano)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Professor.Nome)
+            </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Disciplina.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Ano)
+            </td>
+            <td>
+                <button onclick="location.href='@Url.Action("Edit", "Turma", new { id = item.ID } )'" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ediar </button>
+                <button onclick="location.href='@Url.Action("Details", "Turma", new { id = item.ID })'" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Detalhes </button>
+                <button onclick="location.href='@Url.Action("Delete", "Turma", new { id = item.ID })'" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Deletar </button>
+            </td>
+        </tr>
+    }
+
+</table>

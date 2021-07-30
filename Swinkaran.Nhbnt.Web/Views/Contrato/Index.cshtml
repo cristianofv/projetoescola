@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Ensino.Web.Models.Contrato>
+
+@{
+    ViewBag.Title = "Contrato Escolar";
+}
+
+    <h2>Lista de Contratos</h2>
+
+<p>
+    <button onclick="location.href='@Url.Action("Create", "Contrato")'" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo Contrato</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instituicao.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aluno.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorMensalidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaVencimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Instituicao.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Aluno.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ValorMensalidade)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaVencimento)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Data)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ativo)
+    </td>
+    <td>
+        <button onclick="location.href='@Url.Action("Edit", "Contrato", new { id = item.ID } )'" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ediar </button>
+        <button onclick="location.href='@Url.Action("Details", "Contrato", new { id = item.ID })'" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Detalhes </button>
+        <button onclick="location.href='@Url.Action("Delete", "Contrato", new { id = item.ID })'" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Deletar </button>
+    </td>
+</tr>
+    }
+
+</table>

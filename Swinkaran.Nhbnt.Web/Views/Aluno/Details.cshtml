@@ -1,0 +1,91 @@
+﻿@model Ensino.Web.Models.Aluno
+
+@{
+    ViewBag.Title = "Aluno";
+}
+
+<h2>Aluno</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genero)
+        </dt>
+
+        <dd>
+            @(Model.Genero == "M" ? "Masculino" : (Model.Genero == "F" ? "Feminino" : "Não infomado"))
+        </dd>
+
+    </dl>
+</div>
+<h2>Alunos da Turmas</h2>
+
+<p>
+    <button onclick="location.href='@Url.Action("Create", "TurmaAluno")'" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nova Turma</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Aluno
+        </th>
+        <th>
+            Data de Ingresso
+        </th>
+        <th>
+            Ativo
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ListaTurmaAluno)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aluno.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataIngresso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+
+            <td>
+                <button onclick="location.href='@Url.Action("Edit", "TurmaAluno", new { id = item.ID } )'" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ediar </button>
+                <button onclick="location.href='@Url.Action("Details", "TurmaAluno", new { id = item.ID })'" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Detalhes </button>
+                <button onclick="location.href='@Url.Action("Delete", "TurmaAluno", new { id = item.ID })'" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Deletar </button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>
